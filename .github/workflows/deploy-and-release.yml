@@ -81,4 +81,15 @@ jobs:
         uses: actions/create-release@v1
         id: create_release
         env:
-          GITH
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: true
+
+      - name: upload files to release
+        uses: csexton/release-asset-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: bin/Release/net6.0/publish/*/hangman*
+          release-url: ${{ steps.create_release.outputs.upload_url }}
