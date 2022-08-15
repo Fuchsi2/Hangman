@@ -18,7 +18,7 @@ namespace hangman
             + "| | | | (_| | | | | (_| | | | | | | (_| | | | |   Von ***REMOVED*** (Github: Fuchsi2)\n"
             + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|   Im Rahmen eines Praktikums bei ***REMOVED***\n"
             + "                    __/ |\n"
-            + "                   |___/\n";
+            + "                   |___/   V1.0.0\n";
 
         public List<string> hangmanStages = new()
             {
