@@ -25,7 +25,7 @@ jobs:
       - name: dotnet publish win-x64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build
       - name: rename executable win-x64
-        run: mv bin/Release/net6.0/publish/win-x64/hangman.exe bin/Release/net6.0/publish/win-x64/hangman_win-x64.exe
+        run: mv bin/Release/net6.0/win-x64/publish/hangman.exe bin/Release/net6.0/win-x64/publish/hangman_win-x64.exe
 
       - name: dotnet restore win-x86
         run: dotnet restore ${{ env.PROJECT_PATH }} -r win-x86
@@ -34,7 +34,7 @@ jobs:
       - name: dotnet publish win-x86
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x86 -p:PublishSingleFile=true --no-build
       - name: rename executable win-x86
-        run: mv bin/Release/net6.0/publish/win-x86/hangman.exe bin/Release/net6.0/publish/win-x86/hangman_win-x86.exe
+        run: mv bin/Release/net6.0/win-x86/publish/hangman.exe bin/Release/net6.0/win-x86/publish/hangman_win-x86.exe
 
       - name: dotnet restore linux-x64
         run: dotnet restore ${{ env.PROJECT_PATH }} -r linux-x64
@@ -43,7 +43,7 @@ jobs:
       - name: dotnet publish linux-x64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r linux-x64 -p:PublishSingleFile=true --no-build
       - name: rename executable linux-x64
-        run: mv bin/Release/net6.0/publish/linux-x64/hangman bin/Release/net6.0/publish/linux-x64/hangman_linux-x64
+        run: mv bin/Release/net6.0/linux-x64/publish/hangman bin/Release/net6.0/linux-x64/publish/hangman_linux-x64
 
       - name: dotnet restore linux-arm
         run: dotnet restore ${{ env.PROJECT_PATH }} -r linux-arm
@@ -52,7 +52,7 @@ jobs:
       - name: dotnet publish linux-arm
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r linux-arm -p:PublishSingleFile=true --no-build
       - name: rename executable linux-arm
-        run: mv bin/Release/net6.0/publish/linux-arm/hangman bin/Release/net6.0/publish/linux-arm/hangman_linux-arm
+        run: mv bin/Release/net6.0/linux-arm/publish/hangman bin/Release/net6.0/linux-arm/publish/hangman_linux-arm
 
       - name: dotnet restore linux-arm64
         run: dotnet restore ${{ env.PROJECT_PATH }} -r linux-arm64
@@ -61,7 +61,7 @@ jobs:
       - name: dotnet publish linux-arm64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r linux-arm64 -p:PublishSingleFile=true --no-build
       - name: rename executable linux-arm64
-        run: mv bin/Release/net6.0/publish/linux-arm64/hangman bin/Release/net6.0/publish/linux-arm64/hangman_linux-arm64
+        run: mv bin/Release/net6.0/linux-arm64/publish/hangman bin/Release/net6.0/linux-arm64/publish/hangman_linux-arm64
 
       - name: dotnet restore osx-x64
         run: dotnet restore ${{ env.PROJECT_PATH }} -r osx-x64
@@ -70,10 +70,10 @@ jobs:
       - name: dotnet publish osx-x64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r osx-x64 -p:PublishSingleFile=true --no-build
       - name: rename executable osx-x64
-        run: mv bin/Release/net6.0/publish/osx-x64/hangman bin/Release/net6.0/publish/osx-x64/hangman_osx-x64
+        run: mv bin/Release/net6.0/osx-x64/publish/hangman bin/Release/net6.0/osx-x64/publish/hangman_osx-x64
 
       - name: remove hangman.pdb files
-        run: rm bin/Release/net6.0/publish/*/hangman.pdb
+        run: rm bin/Release/net6.0/*/publish/hangman.pdb
 
 
 
@@ -91,5 +91,5 @@ jobs:
         uses: csexton/release-asset-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: bin/Release/net6.0/publish/*/hangman*
-          release-url: ${{ steps.create_release.outputs.upload_url }}
+          pattern: bin/Release/net6.0/*/publish/hangman*
+          release-url: ${{ steps.create_releas
