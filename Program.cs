@@ -1,10 +1,21 @@
-﻿var renderer = new hangman.Render();
-var wordlist = new hangman.WordlistDE();
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using hangman;
+using System.Reflection;
+using System.Resources;
+using System.Globalization;
+using System.Text;
+
+var renderer = new hangman.Render();
 
 List<char> guessed = new() {};
 
+string utfString = Encoding.UTF8.GetString(hangman.Resources.WordsDE, 0, hangman.Resources.WordsDE.Length);
+
+JArray o1 = JArray.Parse(utfString);
+
 Random rd = new Random();
-string word = wordlist.Words[rd.Next(0, wordlist.Words.Count - 1)];
+string word = o1[rd.Next(0, o1.Count - 1)].ToString();
 
 bool completed = false;
 int wrongAnswers = 0;
@@ -48,3 +59,11 @@ while (!completed)
 
     renderer.RenderScreen(wrongAnswers, word, guessed, message);
 }
+
+Console.Write("Neustarten? (j/N): ");
+List<string> validYesAnswers = new() { "y", "Y", "j", "J" };
+if (validYesAnswers.Contains(Console.ReadLine()))
+{
+    System.Diagnostics.Process.Start(AppDomain.CurrentDomain.FriendlyName);
+}
+Environment.Exit(0);

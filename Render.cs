@@ -12,7 +12,7 @@
             + "| | | | (_| | | | | (_| | | | | | | (_| | | | |   Von ***REMOVED*** (Github: Fuchsi2)\n"
             + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|   Im Rahmen eines Praktikums bei ***REMOVED***\n"
             + "                    __/ |\n"
-            + "                   |___/   V1.0.0\n";
+            + "                   |___/   V1.0.1\n";
 
         public List<string> hangmanStages = new()
             {
@@ -100,6 +100,8 @@
             }
             Console.WriteLine("\n\n");
             Console.WriteLine(hangmanStages[stage]);
+            Console.WriteLine("\n");
+            Console.WriteLine(String.Join(", ",guessedChars.Distinct()));
             Console.WriteLine("\n");
             Console.WriteLine(message);
         }
