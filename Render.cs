@@ -12,13 +12,13 @@ namespace hangman
 
         public string hangmanLogo = ""
             + " _\n"
-            + "| |     <github link pending>\n"
+            + "| |     https://github.com/Fuchsi2/Hangman\n"
             + "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n"
             + "| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n"
             + "| | | | (_| | | | | (_| | | | | | | (_| | | | |   Von ***REMOVED*** (Github: Fuchsi2)\n"
             + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|   Im Rahmen eines Praktikums bei ***REMOVED***\n"
             + "                    __/ |\n"
-            + "                   |___/   (nur englische Wörter)\n";
+            + "                   |___/\n";
 
         public List<string> hangmanStages = new()
             {
