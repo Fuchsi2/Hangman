@@ -12,7 +12,7 @@
             + "| | | | (_| | | | | (_| | | | | | | (_| | | | |   Von ***REMOVED*** (Github: Fuchsi2)\n"
             + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|   Im Rahmen eines Praktikums bei ***REMOVED***\n"
             + "                    __/ |\n"
-            + "                   |___/   V1.0.4\n";
+            + "                   |___/   V1.0.5\n";
 
         public List<string> hangmanStages = new()
             {

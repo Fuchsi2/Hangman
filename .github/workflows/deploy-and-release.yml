@@ -1,4 +1,4 @@
-name: "Deploy and release Hangman"
+name: "deploy and release Hangman"
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
   PROJECT_PATH: hangman.csproj
 
 jobs:
-  deploy:
+  deploy-and-release:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,37 +18,55 @@ jobs:
         with:
           dotnet-version: 6.0.x  
 
-      - name: dotnet restore
-        run: dotnet restore ${{ env.PROJECT_PATH }}
-
-      - name: dotnet build
-        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true
-
+      - name: dotnet restore win-x64
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r win-x64
+      - name: dotnet build win-x64
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r win-x64
       - name: dotnet publish win-x64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build
       - name: rename executable win-x64
         run: mv bin/Release/net6.0/publish/win-x64/hangman.exe bin/Release/net6.0/publish/win-x64/hangman_win-x64.exe
 
+      - name: dotnet restore win-x86
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r win-x86
+      - name: dotnet build win-x86
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r win-x86
       - name: dotnet publish win-x86
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x86 -p:PublishSingleFile=true --no-build
       - name: rename executable win-x86
         run: mv bin/Release/net6.0/publish/win-x86/hangman.exe bin/Release/net6.0/publish/win-x86/hangman_win-x86.exe
 
+      - name: dotnet restore linux-x64
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r linux-x64
+      - name: dotnet build linux-x64
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r linux-x64
       - name: dotnet publish linux-x64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r linux-x64 -p:PublishSingleFile=true --no-build
       - name: rename executable linux-x64
         run: mv bin/Release/net6.0/publish/linux-x64/hangman bin/Release/net6.0/publish/linux-x64/hangman_linux-x64
 
+      - name: dotnet restore linux-arm
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r linux-arm
+      - name: dotnet build linux-arm
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r linux-arm
       - name: dotnet publish linux-arm
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r linux-arm -p:PublishSingleFile=true --no-build
       - name: rename executable linux-arm
         run: mv bin/Release/net6.0/publish/linux-arm/hangman bin/Release/net6.0/publish/linux-arm/hangman_linux-arm
 
+      - name: dotnet restore linux-arm64
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r linux-arm64
+      - name: dotnet build linux-arm64
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r linux-arm64
       - name: dotnet publish linux-arm64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r linux-arm64 -p:PublishSingleFile=true --no-build
       - name: rename executable linux-arm64
         run: mv bin/Release/net6.0/publish/linux-arm64/hangman bin/Release/net6.0/publish/linux-arm64/hangman_linux-arm64
 
+      - name: dotnet restore osx-x64
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r osx-x64
+      - name: dotnet build osx-x64
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r osx-x64
       - name: dotnet publish osx-x64
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r osx-x64 -p:PublishSingleFile=true --no-build
       - name: rename executable osx-x64
@@ -63,15 +81,4 @@ jobs:
         uses: actions/create-release@v1
         id: create_release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: true
-
-      - name: upload files to release
-        uses: csexton/release-asset-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: bin/Release/net6.0/publish/*/hangman*
-          release-url: ${{ steps.create_release.outputs.upload_url }}
+          GITH
