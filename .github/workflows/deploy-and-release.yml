@@ -92,4 +92,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pattern: bin/Release/net6.0/*/publish/hangman*
-          release-url: ${{ steps.create_releas
+          release-url: ${{ steps.create_release.outputs.upload_url }}
