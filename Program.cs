@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-//ascii art by https://ascii.co.uk/art/hangman
-
-var renderer = new hangman.Render();
+﻿var renderer = new hangman.Render();
 var wordlist = new hangman.WordlistDE();
 
 List<char> guessed = new() {};

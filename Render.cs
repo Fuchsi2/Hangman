@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace hangman
+﻿namespace hangman
 {
     internal class Render
     {
-        public Render(){}
+        public Render(){ } //ascii art by https://ascii.co.uk/art/hangman
 
         public string hangmanLogo = ""
             + " _\n"
