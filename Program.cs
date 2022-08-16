@@ -27,16 +27,14 @@ while (!completed)
     message = "";
     Console.Write("Buchstabe Eingeben: ");
     string val = Console.ReadLine();
-    Console.WriteLine(val);
-    if (val == word)
-    {
-        completed = true;
-        message = "Du hast gewonnen!";
-    }
-    else if (val == null || val.Count() > 1)
+    if (val == null || val.Count() > 1)
     {
         message = "Bitte Genau 1 Buchtstabe oder das ganze Wort eingeben!";
         wrongAnswers++;
+    }else if (val == word)
+    {
+        completed = true;
+        message = "Du hast gewonnen!";
     }
     else
     {
@@ -64,6 +62,6 @@ Console.Write("Neustarten? (j/N): ");
 List<string> validYesAnswers = new() { "y", "Y", "j", "J" };
 if (validYesAnswers.Contains(Console.ReadLine()))
 {
-    System.Diagnostics.Process.Start(AppDomain.CurrentDomain.FriendlyName);
+    System.Diagnostics.Process.Start(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
 }
 Environment.Exit(0);
