@@ -27,29 +27,30 @@ while (!completed)
     message = "";
     Console.Write("Buchstabe Eingeben: ");
     string val = Console.ReadLine();
-    if (val == null || val.Count() > 1)
+    if (val == null || val.Count() > 1 || val.Count() == 0)
     {
         message = "Bitte Genau 1 Buchtstabe oder das ganze Wort eingeben!";
         wrongAnswers++;
-    }else if (val == word)
+    }
+    else if (val == word)
     {
         completed = true;
         message = "Du hast gewonnen!";
     }
     else
     {
-        if (!word.Contains(val.ToCharArray().First()) || guessed.Contains(val.ToCharArray().First())) {
+        if ((!word.Contains(val.ToUpper().ToCharArray().First()) && !word.Contains(val.ToLower().ToCharArray().First())) || guessed.Contains(val.ToCharArray().First())) {
             wrongAnswers++;
         }
-        guessed.Add(val.ToCharArray().First());
+        if (!guessed.Contains(val.ToCharArray().First())) guessed.Add(val.ToCharArray().First());
     }
 
     if (wrongAnswers == renderer.hangmanStages.Count() - 1)
     {
         completed = true;
-        message = "Du hast verloren!";
+        message = "Du hast verloren! Das Wort war " +  word + ".";
     }
-    else if (word.All(c => { return guessed.Contains(c); }))
+    else if (word.All(c => { return guessed.Contains(c.ToString().ToLower().ToCharArray().First()) || guessed.Contains(c.ToString().ToUpper().ToCharArray().First()); }))
     {
         completed = true;
         message = "Du hast gewonnen!";

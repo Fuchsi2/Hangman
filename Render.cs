@@ -12,7 +12,7 @@
             + "| | | | (_| | | | | (_| | | | | | | (_| | | | |   Von Fuchsi2\n"
             + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n"
             + "                    __/ |\n"
-            + "                   |___/   V1.0.9\n";
+            + "                   |___/   V1.0.10\n";
 
         public List<string> hangmanStages = new()
             {
@@ -90,7 +90,7 @@
             Console.Write("Wort: ");
             for (int i = 0; i < word.Count(); i++)
             {
-                if (guessedChars.Contains(word[i]))
+                if (guessedChars.Contains(word[i].ToString().ToLower().ToCharArray().First()) || guessedChars.Contains(word[i].ToString().ToUpper().ToCharArray().First()))
                 {
                     Console.Write(word[i] + " ");
                 } else
@@ -101,7 +101,7 @@
             Console.WriteLine("\n\n");
             Console.WriteLine(hangmanStages[stage]);
             Console.WriteLine("\n");
-            Console.WriteLine(String.Join(", ",guessedChars.Distinct()));
+            Console.WriteLine(String.Join(", ",guessedChars));
             Console.WriteLine("\n");
             Console.WriteLine(message);
         }
