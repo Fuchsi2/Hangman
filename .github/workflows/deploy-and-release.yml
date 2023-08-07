@@ -72,6 +72,15 @@ jobs:
       - name: rename executable osx-x64
         run: mv bin/Release/net6.0/osx-x64/publish/hangman bin/Release/net6.0/osx-x64/publish/hangman_osx-x64
 
+      - name: dotnet restore osx-arm64
+        run: dotnet restore ${{ env.PROJECT_PATH }} -r osx-arm64
+      - name: dotnet build osx-arm64
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishSingleFile=true -r osx-arm64
+      - name: dotnet publish osx-arm64
+        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r osx-arm64 -p:PublishSingleFile=true --no-build
+      - name: rename executable osx-arm64
+        run: mv bin/Release/net6.0/osx-arm64/publish/hangman bin/Release/net6.0/osx-arm64/publish/hangman_osx-arm64
+
       - name: remove hangman.pdb files
         run: rm bin/Release/net6.0/*/publish/hangman.pdb
 
