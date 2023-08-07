@@ -1,4 +1,6 @@
-﻿namespace hangman
+﻿using System.Reflection;
+
+namespace hangman
 {
     internal class Render
     {
@@ -12,7 +14,7 @@
             + "| | | | (_| | | | | (_| | | | | | | (_| | | | |   Von Fuchsi2\n"
             + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n"
             + "                    __/ |\n"
-            + "                   |___/   V1.0.10\n";
+            + "                   |___/   V" + Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion + "\n";
 
         public List<string> hangmanStages = new()
             {
