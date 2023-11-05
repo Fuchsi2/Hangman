@@ -2,11 +2,11 @@
 
 namespace hangman
 {
-    internal class Render
+    internal static class Render
     {
-        public Render(){ } //ascii art by https://ascii.co.uk/art/hangman
+        //ascii art by https://ascii.co.uk/art/hangman
 
-        public string hangmanLogo = ""
+        public static string hangmanLogo = ""
             + " _\n"
             + "| |     https://github.com/Fuchsi2/Hangman\n"
             + "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n"
@@ -16,7 +16,7 @@ namespace hangman
             + "                    __/ |\n"
             + "                   |___/   V" + Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion + "\n";
 
-        public List<string> hangmanStages = new()
+        public static List<string> hangmanStages = new()
             {
               "\n"
             + "\n"
@@ -84,7 +84,20 @@ namespace hangman
             + "    _|___\n"
             };
 
-        public void RenderScreen(int stage, string word, List<char> guessedChars, string message)
+        public static string getLostText(string word)
+        {
+            return "Du hast verloren! Das Wort war " + word + ".";
+        }
+
+        public static string winText = "Du hast gewonnen!";
+
+        public static string wrongInputMessageText = "Bitte Genau 1 Buchtstabe oder das ganze Wort eingeben!";
+
+        public static string inputText = "Buchstabe Eingeben: ";
+
+        public static string restartQuestionText = "Neustarten? (j/N): ";
+
+        public static void RenderScreen(int stage, string word, List<char> guessedChars, string message)
         {
             Console.Clear();
             Console.WriteLine(hangmanLogo);
